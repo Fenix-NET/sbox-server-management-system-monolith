@@ -1,4 +1,5 @@
 ﻿using SboxServersManager.Application.Dtos;
+using SboxServersManager.Application.Dtos.Request;
 using SboxServersManager.Application.Interfaces;
 using SboxServersManager.Application.Interfaces.Repositories;
 using SboxServersManager.Domain.Aggregates;
@@ -73,7 +74,7 @@ namespace SboxServersManager.Application.Services
         public async Task DeleteServerAsync(Guid id)//Реализовать проверки
         {
             var server = await _repository.GetByIdAsync(id);
-            if(server == null) throw new Exception($"Server with ID:{id} NOT FOUND");
+            if(server == null) throw new Exception($"Server with ID:{id} Not Found");
 
             await _repository.DeleteAsync(server);
         }
@@ -81,7 +82,7 @@ namespace SboxServersManager.Application.Services
         public async Task StartServerAsync(Guid id) //Реализовать проверки
         {
             var server = await _repository.GetByIdAsync(id);
-            if (server == null) throw new Exception($"Server with ID:{id} NOT FOUND");
+            if (server == null) throw new Exception($"Server with ID:{id} Not Found");
 
             server.Start();
             
@@ -91,7 +92,7 @@ namespace SboxServersManager.Application.Services
         public async Task StopServerAsync(Guid id)//Реализовать проверки
         {
             var server = await _repository.GetByIdAsync(id);
-            if (server == null) throw new Exception($"Server with ID:{id} NOT FOUND");
+            if (server == null) throw new Exception($"Server with ID:{id} Not Found");
 
             server.Stop();
 

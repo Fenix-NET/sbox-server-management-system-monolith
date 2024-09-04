@@ -9,13 +9,21 @@ namespace SboxServersManager.Domain.Entities
 {
     public class Player
     {
-        public Guid Id { get; set; } //В дальнейшем можно использовать SteamID
+        public Guid Id { get; set; } = Guid.NewGuid(); //В дальнейшем можно использовать SteamID
         public string Username { get; set; }
         public PlayerRole Role { get; set; }
-        public bool IsBanned { get; set; }
-        public int Warn { get; set; }
-        public DateTime LastActive { get; set; }
+        public bool IsBanned { get; set; } = false;
+        public DateTime? DateReceivingBan { get; set; }
+        public int Warn { get; set; } = 0;
+        public DateTime? LastActive { get; set; }
         public Guid ServerId { get; set; }
+
+        public Player(string name, PlayerRole role, Guid serverId)
+        {
+            Username = name;
+            Role = role;
+            ServerId = serverId;
+        }
 
     }
 }

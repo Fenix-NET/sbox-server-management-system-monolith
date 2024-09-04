@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using SboxServersManager.Application.Dtos;
+using SboxServersManager.Application.Dtos.Request;
 using SboxServersManager.Application.Interfaces;
 
 namespace SboxServersManager.Api.Controllers

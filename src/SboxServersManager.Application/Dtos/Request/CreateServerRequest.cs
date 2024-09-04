@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SboxServersManager.Application.Dtos
+namespace SboxServersManager.Application.Dtos.Request
 {
     public class CreateServerRequest
     {
