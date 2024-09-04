@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35208.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{23345334-8F2F-4E14-B11C-863A1953560C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3CBF956B-F1DA-4BF7-9A30-211CB0377E29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SboxServersManager.Api", "src\SboxServersManager.Api\SboxServersManager.Api.csproj", "{245B58AB-DD15-49D4-A98E-95FB80C60D9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SboxServersManager.Application", "src\SboxServersManager.Application\SboxServersManager.Application.csproj", "{E4543C78-A26A-4A54-9A03-3C1C7ABA6AE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SboxServersManager.Domain", "src\SboxServersManager.Domain\SboxServersManager.Domain.csproj", "{5388AA34-E63C-4618-B70D-4B2365A7B133}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SboxServersManager.Infrastructure", "src\SboxServersManager.Infrastructure\SboxServersManager.Infrastructure.csproj", "{35711836-C808-4576-8C68-3F4764CA9A0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SboxServersManager.Shared", "src\SboxServersManager.Shared\SboxServersManager.Shared.csproj", "{122FF63A-3C64-4970-ADD4-5E5A91BC7596}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{245B58AB-DD15-49D4-A98E-95FB80C60D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245B58AB-DD15-49D4-A98E-95FB80C60D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245B58AB-DD15-49D4-A98E-95FB80C60D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245B58AB-DD15-49D4-A98E-95FB80C60D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4543C78-A26A-4A54-9A03-3C1C7ABA6AE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4543C78-A26A-4A54-9A03-3C1C7ABA6AE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4543C78-A26A-4A54-9A03-3C1C7ABA6AE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4543C78-A26A-4A54-9A03-3C1C7ABA6AE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5388AA34-E63C-4618-B70D-4B2365A7B133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5388AA34-E63C-4618-B70D-4B2365A7B133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5388AA34-E63C-4618-B70D-4B2365A7B133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5388AA34-E63C-4618-B70D-4B2365A7B133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35711836-C808-4576-8C68-3F4764CA9A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35711836-C808-4576-8C68-3F4764CA9A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35711836-C808-4576-8C68-3F4764CA9A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35711836-C808-4576-8C68-3F4764CA9A0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{122FF63A-3C64-4970-ADD4-5E5A91BC7596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{122FF63A-3C64-4970-ADD4-5E5A91BC7596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{122FF63A-3C64-4970-ADD4-5E5A91BC7596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{122FF63A-3C64-4970-ADD4-5E5A91BC7596}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{245B58AB-DD15-49D4-A98E-95FB80C60D9B} = {23345334-8F2F-4E14-B11C-863A1953560C}
+		{E4543C78-A26A-4A54-9A03-3C1C7ABA6AE9} = {23345334-8F2F-4E14-B11C-863A1953560C}
+		{5388AA34-E63C-4618-B70D-4B2365A7B133} = {23345334-8F2F-4E14-B11C-863A1953560C}
+		{35711836-C808-4576-8C68-3F4764CA9A0F} = {23345334-8F2F-4E14-B11C-863A1953560C}
+		{122FF63A-3C64-4970-ADD4-5E5A91BC7596} = {23345334-8F2F-4E14-B11C-863A1953560C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8E483C2-8D8E-4E3E-B728-215DAAD3F9AC}
+	EndGlobalSection
+EndGlobal
