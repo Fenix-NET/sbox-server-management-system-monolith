@@ -1,4 +1,8 @@
 
+using SboxServersManager.Api.Extensions;
+using SboxServersManager.Application;
+using SboxServersManager.Infrastructure;
+
 namespace SboxServersManager.Api
 {
     public class Program
@@ -6,6 +10,11 @@ namespace SboxServersManager.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.ConfigurationCors();
+
+            builder.Services.AddApplication();
+            builder.Services.AddInfrastructure(builder.Configuration);
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

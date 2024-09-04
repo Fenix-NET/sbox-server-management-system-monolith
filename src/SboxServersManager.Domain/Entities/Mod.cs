@@ -13,5 +13,6 @@ namespace SboxServersManager.Domain.Entities
         public string Name { get; set; }
         public string? Version { get; set; }
         public string? Description { get; set; }
+        public List<Server>? InstalledOnServers { get; set; }
     }
 }
