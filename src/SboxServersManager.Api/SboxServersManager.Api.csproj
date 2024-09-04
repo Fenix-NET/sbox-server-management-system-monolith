@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SboxServersManager.Application\SboxServersManager.Application.csproj" />
+    <ProjectReference Include="..\SboxServersManager.Infrastructure\SboxServersManager.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
