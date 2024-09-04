@@ -11,9 +11,7 @@ namespace SboxServersManager.Domain.Entities
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Version { get; set; }
-        public string Description { get; set; }
-        public List<Server> InstalledOnServers { get; set; }
-
+        public string? Version { get; set; }
+        public string? Description { get; set; }
     }
 }

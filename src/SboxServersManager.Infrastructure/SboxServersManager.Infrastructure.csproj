@@ -24,4 +24,8 @@
     <ProjectReference Include="..\SboxServersManager.Application\SboxServersManager.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logging\" />
+  </ItemGroup>
+
 </Project>

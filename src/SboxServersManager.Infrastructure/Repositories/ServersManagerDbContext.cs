@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SboxServersManager.Domain.Aggregates;
 using SboxServersManager.Domain.Entities;
+using SboxServersManager.Infrastructure.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,13 @@ namespace SboxServersManager.Infrastructure.Repositories
         {
             
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ServerConfiguration());
+            modelBuilder.ApplyConfiguration(new PlayerConfiguration());
+            modelBuilder.ApplyConfiguration(new ModConfiguration());
+        }
+
         public DbSet<Server> Servers { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Mod> Mods { get; set; }

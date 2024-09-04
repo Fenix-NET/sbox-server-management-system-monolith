@@ -18,7 +18,11 @@ namespace SboxServersManager.Api.Controllers
             _logger = logger;
             _serverManagement = serverManagement;
         }
-
+        /// <summary>
+        /// Создать новый сервер.
+        /// </summary>
+        /// <param name="serverRequest"></param>
+        /// <returns></returns>
         [HttpPost("create")]
         public async Task<IActionResult> CreateServer([FromBody]CreateServerRequest serverRequest)
         {
@@ -35,6 +39,11 @@ namespace SboxServersManager.Api.Controllers
                 return StatusCode(500);
             }
         }
+        /// <summary>
+        /// Получить информацию о сервере по его ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetServerById(Guid id)
         {
@@ -49,6 +58,10 @@ namespace SboxServersManager.Api.Controllers
                 return StatusCode(500);
             }
         }
+        /// <summary>
+        /// Получить список всех серверов.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAllServers()
         {
@@ -63,6 +76,11 @@ namespace SboxServersManager.Api.Controllers
                 return StatusCode(500);
             }
         }
+        /// <summary>
+        /// Включить сервер.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost("{id}/start")]
         public async Task<IActionResult> StartServer(Guid id)
         {
@@ -77,6 +95,11 @@ namespace SboxServersManager.Api.Controllers
                 return StatusCode(500);
             }
         }
+        /// <summary>
+        /// Выключить сервер.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost("{id}/stop")]
         public async Task<IActionResult> StopServer(Guid id)
         {
@@ -91,6 +114,11 @@ namespace SboxServersManager.Api.Controllers
                 return StatusCode(500);
             }
         }
+        /// <summary>
+        /// Удалить сервер.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteServer(Guid id)
         {

@@ -18,9 +18,9 @@ namespace SboxServersManager.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<Server> GetByIdAsync(Guid id)
+        public async Task<Server> GetByIdAsync(Guid id) //.AsSplitQuery()?
         {
-            var server = await _context.Servers
+            var server = await _context.Servers.AsNoTracking()
                 .Include(s => s.Players)
                 .Include(s => s.ActiveMods)
                 .FirstOrDefaultAsync(s => s.Id == id);
@@ -28,9 +28,9 @@ namespace SboxServersManager.Infrastructure.Repositories
             return server;
         }
 
-        public async Task<IEnumerable<Server>> GetAllAsync()
+        public async Task<IEnumerable<Server>> GetAllAsync() //.AsSplitQuery()?
         {
-            var servers = await _context.Servers
+            var servers = await _context.Servers.AsNoTracking()
                 .Include(s => s.Players)
                 .Include(s => s.ActiveMods)
                 .ToListAsync();
