@@ -1,4 +1,5 @@
-﻿using SboxServersManager.Application.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using SboxServersManager.Application.Interfaces.Repositories;
 using SboxServersManager.Domain.Aggregates;
 using System;
 using System.Collections.Generic;
@@ -19,18 +20,22 @@ namespace SboxServersManager.Infrastructure.Repositories
 
         public async Task<Server> GetByIdAsync(Guid id)
         {
-            return await _context.Servers
+            var server = await _context.Servers
                 .Include(s => s.Players)
                 .Include(s => s.ActiveMods)
                 .FirstOrDefaultAsync(s => s.Id == id);
+            
+            return server;
         }
 
         public async Task<IEnumerable<Server>> GetAllAsync()
         {
-            return await _context.Servers
+            var servers = await _context.Servers
                 .Include(s => s.Players)
                 .Include(s => s.ActiveMods)
                 .ToListAsync();
+            
+            return servers;
         }
 
         public async Task AddAsync(Server server)

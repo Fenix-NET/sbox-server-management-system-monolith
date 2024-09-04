@@ -14,13 +14,13 @@ namespace SboxServersManager.Domain.Aggregates
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }
-        public IPAddress Address { get; private set; }
+        public string Address { get; private set; }
         public int Port { get; private set; }
         public ServerStatus Status { get; private set; }
         public List<Player> Players { get; private set; }
         public List<Mod> ActiveMods { get; private set; }
 
-        public Server(string name, IPAddress address, int port)
+        public Server(string name, string address, int port)
         {
             Id = Guid.NewGuid();
             Name = name ?? throw new ArgumentNullException(nameof(name));
