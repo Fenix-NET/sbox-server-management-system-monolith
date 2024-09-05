@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SboxServersManager.Application.Dtos.Request
+namespace SboxServersManager.Application.Dtos.Identity
 {
     public class UserLoginRequest
     {

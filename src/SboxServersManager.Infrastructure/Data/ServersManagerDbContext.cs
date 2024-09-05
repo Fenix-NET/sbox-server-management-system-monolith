@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SboxServersManager.Domain.Aggregates;
 using SboxServersManager.Domain.Entities;
 using SboxServersManager.Infrastructure.Data.EntityConfigurations;
+using SboxServersManager.Infrastructure.Identity.Entities;
 
 namespace SboxServersManager.Infrastructure.Data
 {
@@ -28,5 +29,6 @@ namespace SboxServersManager.Infrastructure.Data
         public DbSet<Player> Players { get; set; }
         public DbSet<Mod> Mods { get; set; }
         public DbSet<AdminTask> AdminTasks { get; set; }
+        public DbSet<LoginModel>? LoginModels { get; set; }
     }
 }

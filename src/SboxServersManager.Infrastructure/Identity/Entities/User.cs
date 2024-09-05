@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SboxServersManager.Domain.Entities;
 
-namespace SboxServersManager.Domain.Entities
+namespace SboxServersManager.Infrastructure.Identity.Entities
 {
     public class User : IdentityUser<Guid>
     {

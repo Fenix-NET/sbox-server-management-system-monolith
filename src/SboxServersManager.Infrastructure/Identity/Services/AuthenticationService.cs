@@ -2,26 +2,27 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
-using SboxServersManager.Application.Dtos.Request;
+using SboxServersManager.Application.Dtos.Identity;
+using SboxServersManager.Application.Interfaces.Identity;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
-namespace SboxServersManager.Infrastructure.Identity
+namespace SboxServersManager.Infrastructure.Identity.Services
 {
     /// <summary>
     /// Сервис управления пользователями, ответственный за регистрацию, создание JWT токенов.
     /// </summary>
-    public class AuthenticationService
+    public class AuthenticationService : IAuthenticationService
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
         public AuthenticationService(
-            UserManager<IdentityUser> userManager, 
-            RoleManager<IdentityRole> roleManager, 
+            UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager,
             IConfiguration configuration)
         {
             _userManager = userManager;

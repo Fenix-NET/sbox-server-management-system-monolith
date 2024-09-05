@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SboxServersManager.Domain.Entities;
+using SboxServersManager.Infrastructure.Identity.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

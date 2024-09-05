@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SboxServersManager.Domain.Entities
+namespace SboxServersManager.Infrastructure.Identity.Entities
 {
     public class Role : IdentityRole<Guid>
     {
-        
+
     }
 }
