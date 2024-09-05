@@ -1,13 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SboxServersManager.Application.Interfaces.Repositories;
 using SboxServersManager.Domain.Aggregates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SboxServersManager.Infrastructure.Repositories
+namespace SboxServersManager.Infrastructure.Data.Repositories
 {
     public class ServerRepository : IServerRepository
     {
@@ -24,7 +19,7 @@ namespace SboxServersManager.Infrastructure.Repositories
                 .Include(s => s.Players)
                 .Include(s => s.ActiveMods)
                 .FirstOrDefaultAsync(s => s.Id == id);
-            
+
             return server;
         }
 
@@ -34,7 +29,7 @@ namespace SboxServersManager.Infrastructure.Repositories
                 .Include(s => s.Players)
                 .Include(s => s.ActiveMods)
                 .ToListAsync();
-            
+
             return servers;
         }
 

@@ -1,13 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SboxServersManager.Application.Interfaces.Repositories;
 using SboxServersManager.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SboxServersManager.Infrastructure.Repositories
+namespace SboxServersManager.Infrastructure.Data.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {

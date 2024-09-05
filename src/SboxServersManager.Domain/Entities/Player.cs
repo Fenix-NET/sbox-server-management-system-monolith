@@ -17,6 +17,9 @@ namespace SboxServersManager.Domain.Entities
         public int Warn { get; set; } = 0;
         public DateTime? LastActive { get; set; }
         public Guid ServerId { get; set; }
+        public Guid? UserId { get; set; }
+        public int? NumberPurchases { get; set; }
+        public decimal? TotalMoneySpent { get; set; }
 
         public Player(string name, PlayerRole role, Guid serverId)
         {

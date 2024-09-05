@@ -17,7 +17,7 @@ namespace SboxServersManager.Domain.Aggregates
         public string Address { get; private set; }
         public int Port { get; private set; }
         public ServerStatus Status { get; private set; }
-        public List<Player> Players { get; private set; }
+        public List<Player>? Players { get; private set; }
         public List<Mod> ActiveMods { get; private set; }
 
         public Server(string name, string address, int port)

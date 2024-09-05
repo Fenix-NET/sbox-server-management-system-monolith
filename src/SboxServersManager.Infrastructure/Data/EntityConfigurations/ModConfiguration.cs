@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SboxServersManager.Infrastructure.Configurations
+namespace SboxServersManager.Infrastructure.Data.EntityConfigurations
 {
     public class ModConfiguration : IEntityTypeConfiguration<Mod>
     {

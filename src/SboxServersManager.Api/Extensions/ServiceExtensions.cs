@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SboxServersManager.Infrastructure.Repositories;
+using SboxServersManager.Infrastructure.Data;
 
 namespace SboxServersManager.Api.Extensions
 {

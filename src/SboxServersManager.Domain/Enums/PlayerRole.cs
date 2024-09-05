@@ -14,6 +14,6 @@ namespace SboxServersManager.Domain.Enums
         Helper = 2003,
         Admin = 2004,
         SuperAdmin = 2005,
-        Creator = 2006
+        Owner = 2006
     }
 }
