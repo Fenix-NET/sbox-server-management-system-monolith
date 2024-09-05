@@ -23,12 +23,12 @@ namespace SboxServersManager.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new PlayerConfiguration());
             modelBuilder.ApplyConfiguration(new ModConfiguration());
             modelBuilder.ApplyConfiguration(new AdminTaskConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
 
         public DbSet<Server> Servers { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Mod> Mods { get; set; }
         public DbSet<AdminTask> AdminTasks { get; set; }
-        public DbSet<LoginModel>? LoginModels { get; set; }
     }
 }

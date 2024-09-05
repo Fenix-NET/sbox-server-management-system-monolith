@@ -10,7 +10,10 @@ namespace SboxServersManager.Application.Interfaces.Identity
 {
     public interface IAuthenticationService
     {
-        Task<IdentityResult> RegisterUserAsync(UserRegistrationRequest request);
-        Task<string> AuthenticateUserAsync(UserLoginRequest request);
+        Task<IdentityResult> RegisterUserAsync(UserRegistrationRequest userRegistrationRequest);
+        Task<bool> ValidateUser(UserLoginRequest userAuthRequest); 
+        Task<TokenDto> CreateToken(bool populateExp);
+        Task<TokenDto> RefreshToken(TokenDto tokenDto);
+        Task<string> AuthenticateUserAsync(UserLoginRequest userAuthRequest);
     }
 }
