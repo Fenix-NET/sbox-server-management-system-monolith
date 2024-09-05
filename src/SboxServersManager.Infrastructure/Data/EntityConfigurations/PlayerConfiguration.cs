@@ -31,6 +31,10 @@ namespace SboxServersManager.Infrastructure.Data.EntityConfigurations
                 .IsRequired();
 
             builder.Property(p => p.Warn).HasColumnName("warn")
+                .IsRequired()
+                .HasDefaultValue(0);
+
+            builder.Property(p => p.CreatedDate).HasColumnName("created")
                 .IsRequired();
 
             builder.Property(p => p.LastActive).HasColumnName("last_active");
