@@ -11,7 +11,7 @@ namespace SboxServersManager.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ServersManagerDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("SBox-SMM-ConnString")));
+                options.UseNpgsql(configuration.GetConnectionString("ServersManagerContext")));
 
             services.AddScoped<IServerRepository, ServerRepository>();
             services.AddScoped<IPlayerRepository, PlayerRepository>();

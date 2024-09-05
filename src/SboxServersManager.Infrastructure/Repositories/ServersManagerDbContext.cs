@@ -27,6 +27,7 @@ namespace SboxServersManager.Infrastructure.Repositories
         public DbSet<Server> Servers { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Mod> Mods { get; set; }
+        public DbSet<AdminTask> AdminTasks { get; set; }
 
     }
 }
