@@ -21,6 +21,8 @@ namespace SboxServersManager.Domain.Entities
         public DateTime? LastActive { get; set; }
         public Guid ServerId { get; set; }
         public Guid? UserId { get; set; }
+        [Range(-100, 100)]
+        public int Rating { get; set; }
         public int? NumberPurchases { get; set; }
         public decimal? TotalMoneySpent { get; set; }
 
