@@ -7,7 +7,7 @@ using SboxServersManager.Domain.Aggregates;
 namespace SboxServersManager.Api.Controllers
 {
     [ApiVersion("1.0")]
-    [Route("api/v1/servers/{serverId}/players")]
+    [Route("api/{v:apiversion}/servers/{serverId}/players")]
     [ApiController]
     public class PlayersController : ControllerBase //Тут много чего надо делать-переделывать. Оптимизировать для реальной серверной функциональности.
     {

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.EntityFrameworkCore;
 using SboxServersManager.Infrastructure.Data;
 
 namespace SboxServersManager.Api.Extensions
@@ -35,5 +37,17 @@ namespace SboxServersManager.Api.Extensions
             IConfiguration configuration) =>
             services.AddDbContext<ServersManagerDbContext>(opts =>
                 opts.UseNpgsql(configuration.GetConnectionString("SboxSMSContext")));
+
+        public static void ConfigureVersioning(this IServiceCollection services)
+        {
+            services.AddApiVersioning(opt =>
+            {
+                opt.ReportApiVersions = true;
+                opt.AssumeDefaultVersionWhenUnspecified = true;
+                opt.DefaultApiVersion = new ApiVersion(1, 0);
+                opt.ApiVersionReader = new HeaderApiVersionReader("api-version");
+            });
+        }
+
     }
 }

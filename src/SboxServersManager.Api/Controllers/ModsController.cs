@@ -7,7 +7,7 @@ using SboxServersManager.Domain.Aggregates;
 namespace SboxServersManager.Api.Controllers
 {
     [ApiVersion("1.0")]
-    [Route("api/v1/servers/{serverId}/mods")]
+    [Route("api/{v:apiversion}/servers/{serverId}/mods")]
     [ApiController]
     public class ModsController : ControllerBase // Та же самаю оптимизация роутинга, валидация...
     {

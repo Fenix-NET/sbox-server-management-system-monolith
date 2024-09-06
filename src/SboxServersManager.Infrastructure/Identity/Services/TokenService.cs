@@ -10,17 +10,17 @@ namespace SboxServersManager.Infrastructure.Identity.Services
 {
     public class TokenService : ITokenService
     {
-        public string GenerateAccessToken(IEnumerable<Claim> claims)
-        {
+        //public string GenerateAccessToken(IEnumerable<Claim> claims)
+        //{
 
-        }
-        public string GenerateRefreshToken()
-        {
+        //}
+        //public string GenerateRefreshToken()
+        //{
 
-        }
-        public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
-        {
+        //}
+        //public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
+        //{
 
-        }
+        //}
     }
 }

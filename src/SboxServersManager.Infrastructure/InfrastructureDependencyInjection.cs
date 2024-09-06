@@ -4,10 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using SboxServersManager.Application.Interfaces.Identity;
 using SboxServersManager.Application.Interfaces.Repositories;
 using SboxServersManager.Infrastructure.Data;
 using SboxServersManager.Infrastructure.Data.Repositories;
 using SboxServersManager.Infrastructure.Identity.Entities;
+using SboxServersManager.Infrastructure.Identity.Services;
 using System.Text;
 
 namespace SboxServersManager.Infrastructure
@@ -24,6 +26,8 @@ namespace SboxServersManager.Infrastructure
             services.AddScoped<IServerRepository, ServerRepository>();
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<IModRepository, ModRepository>();
+            services.AddScoped<IAdminTaskRepository, AdminTaskRepository>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             //Регистрация и настройка сервисов Аутентификации и Авторизации ************************************
             services.AddIdentity<User, Role>(options =>

@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="ValueObjects\" />
     <Folder Include="Services\" />
+    <Folder Include="Events\" />
   </ItemGroup>
 
   <ItemGroup>

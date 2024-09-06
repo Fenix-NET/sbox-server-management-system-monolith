@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SboxServersManager.Application.Interfaces;
 using SboxServersManager.Application.Services;
+using System.Reflection;
 
 namespace SboxServersManager.Application
 {
@@ -11,6 +12,12 @@ namespace SboxServersManager.Application
             services.AddScoped<IServerManagementService, ServerManagementService>();
             services.AddScoped<IPlayerManagementService, PlayerManagementService>();
             services.AddScoped<IModManagementService, ModManagementService>();
+
+            services.AddMediatR(ctg =>
+            {
+                ctg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+
+            });
 
             return services;
         }

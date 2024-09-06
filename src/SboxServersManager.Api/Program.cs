@@ -1,4 +1,5 @@
 
+using Microsoft.Extensions.DependencyInjection;
 using SboxServersManager.Api.Extensions;
 using SboxServersManager.Application;
 using SboxServersManager.Infrastructure;
@@ -12,6 +13,7 @@ namespace SboxServersManager.Api
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.ConfigurationCors();
+            builder.Services.ConfigureVersioning();
 
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure(builder.Configuration);

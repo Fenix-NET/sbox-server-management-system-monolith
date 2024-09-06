@@ -6,7 +6,7 @@ using SboxServersManager.Application.Interfaces.Identity;
 namespace SboxServersManager.Api.Controllers
 {
     [ApiVersion("1.0")]
-    [Route("api/v1/auth")]
+    [Route("api/{v:apiversion}/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -17,7 +17,7 @@ namespace SboxServersManager.Api.Controllers
             _authenticationService = authenticationService;
         }
 
-        [HttpPost]
+        [HttpPost("registration")]
         public async Task<IActionResult> RegisterUser([FromBody] UserRegistrationRequest userRegistration)
         {
             var result = await _authenticationService.RegisterUserAsync(userRegistration);
@@ -28,7 +28,6 @@ namespace SboxServersManager.Api.Controllers
             return StatusCode(201);
         }
 
-        [HttpPost]
         [HttpPost("login")]
         public async Task<IActionResult> Authenticate([FromBody] UserLoginRequest user)
         {

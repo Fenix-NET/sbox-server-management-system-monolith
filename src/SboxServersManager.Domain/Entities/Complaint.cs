@@ -15,7 +15,8 @@ namespace SboxServersManager.Domain.Entities
         public Priority Priority { get; set; }
         public ComplaintStatus Status { get; set; }
         public string Responsible { get; set; } // Создать админ
-        public string Answer { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public string Response { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; private set; }
     }
 }

@@ -172,6 +172,20 @@ namespace SboxServersManager.Infrastructure.Identity.Services
             return GenerateJwtToken(user);
         }
 
+        public async Task<TokenDto> RefreshToken(TokenDto tokenDto)
+        {
+            var principal = GetPrincipalFromExpiredToken(tokenDto.AccessToken);
+
+            var user = await _userManager.FindByEmailAsync(principal.Identity.Name);
+            if (user == null || user.RefreshToken != tokenDto.RefreshToken ||
+                user.RefreshTokenExpiryTime <= DateTime.Now)
+                    throw new Exception();
+
+            _user = user;
+
+            return await CreateToken(populateExp: false);
+        }
+
         private string GenerateJwtToken(User user)
         {
             var jwtSettings = _configuration.GetSection("JwtSettings");

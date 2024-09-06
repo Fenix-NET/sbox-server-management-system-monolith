@@ -7,7 +7,7 @@ namespace SboxServersManager.Api.Controllers
 {
     [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/v1/server")]
+    [Route("api/{v:apiversion}/server")]
     public class ServerController : ControllerBase
     {
         private readonly ILogger<ServerController> _logger;
@@ -130,6 +130,19 @@ namespace SboxServersManager.Api.Controllers
             }
             catch (Exception ex)
             {
+                return StatusCode(500);
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetPlayersOnServer(Guid id)
+        {
+            try
+            {
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
                 return StatusCode(500);
             }
         }

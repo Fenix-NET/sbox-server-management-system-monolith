@@ -14,6 +14,6 @@ namespace SboxServersManager.Application.Interfaces.Identity
         Task<bool> ValidateUser(UserLoginRequest userAuthRequest); 
         Task<TokenDto> CreateToken(bool populateExp);
         Task<TokenDto> RefreshToken(TokenDto tokenDto);
-        Task<string> AuthenticateUserAsync(UserLoginRequest userAuthRequest);
+        //Task<string> AuthenticateUserAsync(UserLoginRequest userAuthRequest);
     }
 }
