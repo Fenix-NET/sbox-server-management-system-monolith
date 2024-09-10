@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SboxServersManager.Application.Dtos
 {
-    public class PlayerDto
+    public class CharacterDto
     {
         public Guid Id { get; set; }
         public string Username { get; set; }

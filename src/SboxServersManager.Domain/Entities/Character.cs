@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace SboxServersManager.Domain.Entities
 {
-    public class Player
+    public class Character
     {
         public Guid Id { get; set; } = Guid.NewGuid(); //В дальнейшем можно использовать SteamID
-        public string Username { get; set; }
+        public string Name { get; set; }
         public PlayerRole Role { get; set; } = PlayerRole.None;
+        public bool IsVip { get; set; }
         public bool IsBanned { get; set; } = false;
-        public DateTime? DateReceivingBan { get; set; }
-        [Range(0, 3)]
+        public DateTime? BanStartDate { get; set; }
+        public DateTime? BanEndDate { get; set; }
+        [Range(0, 5)]
         public int Warn { get; set; } = 0;
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
         public DateTime? LastActive { get; set; }
@@ -23,17 +25,16 @@ namespace SboxServersManager.Domain.Entities
         public Guid? UserId { get; set; }
         [Range(-100, 100)]
         public int Rating { get; set; }
-        public int? NumberPurchases { get; set; }
-        public decimal? TotalMoneySpent { get; set; }
+        public int Level { get; set; }
 
-        public Player(string name, PlayerRole role, Guid serverId)
+        public Character(string name, PlayerRole role, Guid serverId)
         {
-            Username = name;
+            Name = name;
             Role = role;
             ServerId = serverId;
         }
 
-        public Player()
+        public Character()
         {
             
         }

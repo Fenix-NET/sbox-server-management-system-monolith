@@ -24,7 +24,7 @@ namespace SboxServersManager.Infrastructure
             
             //Регистрация сервисов ************************************
             services.AddScoped<IServerRepository, ServerRepository>();
-            services.AddScoped<IPlayerRepository, PlayerRepository>();
+            services.AddScoped<ICharacterRepository, CharacterRepository>();
             services.AddScoped<IModRepository, ModRepository>();
             services.AddScoped<IAdminTaskRepository, AdminTaskRepository>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();

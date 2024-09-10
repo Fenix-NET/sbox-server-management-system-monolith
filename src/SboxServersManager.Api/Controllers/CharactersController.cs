@@ -9,14 +9,14 @@ namespace SboxServersManager.Api.Controllers
     [ApiVersion("1.0")]
     [Route("api/{v:apiversion}/servers/{serverId}/players")]
     [ApiController]
-    public class PlayersController : ControllerBase //Тут много чего надо делать-переделывать. Оптимизировать для реальной серверной функциональности.
+    public class CharactersController : ControllerBase //Тут много чего надо делать-переделывать. Оптимизировать для реальной серверной функциональности.
     {
-        private readonly IPlayerManagementService _playerManagementService;
-        private readonly ILogger<PlayersController> _logger;
-        public PlayersController(ILogger<PlayersController> logger, IPlayerManagementService playerManagementService)
+        private readonly ICharacterManagementService _characterManagementService;
+        private readonly ILogger _logger;
+        public CharactersController(ILogger logger, ICharacterManagementService characterManagementService)
         {
             _logger = logger;
-            _playerManagementService = playerManagementService;
+            _characterManagementService = characterManagementService;
         }
         /// <summary>
         /// Получить список всех игроков сервера
@@ -28,7 +28,7 @@ namespace SboxServersManager.Api.Controllers
         {
             try
             {
-                var players = await _playerManagementService.GetPlayersByServerIdAsync(serverId);
+                var players = await _characterManagementService.GetPlayersByServerIdAsync(serverId);
 
                 return Ok(players);
             }
@@ -49,7 +49,7 @@ namespace SboxServersManager.Api.Controllers
         {
             try
             {
-                var playerId = await _playerManagementService.AddPlayerToServerAsync(serverId, request.Username, request.Role);
+                var playerId = await _characterManagementService.AddPlayerToServerAsync(serverId, request.Username, request.Role);
 
                 return CreatedAtAction(nameof(AddPlayer), playerId);
             }
@@ -70,7 +70,7 @@ namespace SboxServersManager.Api.Controllers
         {
             try
             {
-                await _playerManagementService.RemovePlayerFromServerAsync(serverId, playerId);
+                await _characterManagementService.RemovePlayerFromServerAsync(serverId, playerId);
 
                 return Ok($"Player with id: {playerId} delete");
             }
@@ -89,7 +89,7 @@ namespace SboxServersManager.Api.Controllers
         {
             try
             {
-                await _playerManagementService.BanPlayerAsync(playerId);
+                await _characterManagementService.BanPlayerAsync(playerId);
 
                 return Ok($"Player with id: {playerId} Banned");
             }
@@ -109,7 +109,7 @@ namespace SboxServersManager.Api.Controllers
         {
             try
             {
-                await _playerManagementService.UnbanPlayerAsync(playerId);
+                await _characterManagementService.UnbanPlayerAsync(playerId);
 
                 return Ok($"Player with id: {playerId} UnBanned");
             }

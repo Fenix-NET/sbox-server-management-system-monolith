@@ -20,14 +20,14 @@ namespace SboxServersManager.Infrastructure.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new ServerConfiguration());
-            modelBuilder.ApplyConfiguration(new PlayerConfiguration());
+            modelBuilder.ApplyConfiguration(new CharacterConfiguration());
             modelBuilder.ApplyConfiguration(new ModConfiguration());
             modelBuilder.ApplyConfiguration(new AdminTaskConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
 
         public DbSet<Server> Servers { get; set; }
-        public DbSet<Player> Players { get; set; }
+        public DbSet<Character> Characters { get; set; }
         public DbSet<Mod> Mods { get; set; }
         public DbSet<AdminTask> AdminTasks { get; set; }
     }

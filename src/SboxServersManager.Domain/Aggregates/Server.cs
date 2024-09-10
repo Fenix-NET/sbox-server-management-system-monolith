@@ -17,7 +17,7 @@ namespace SboxServersManager.Domain.Aggregates
         public string Address { get; private set; }
         public int Port { get; private set; }
         public ServerStatus Status { get; private set; }
-        public List<Player>? Players { get; private set; }
+        public List<Character>? Characters { get; private set; }
         public List<Mod> ActiveMods { get; private set; }
 
         public Server(string name, string address, int port)
@@ -27,7 +27,7 @@ namespace SboxServersManager.Domain.Aggregates
             Address = address ?? throw new ArgumentNullException(nameof(address));
             Port = port;
             Status = ServerStatus.Offline;
-            Players = new List<Player>();
+            Characters = new List<Character>();
             ActiveMods = new List<Mod>();
         }
         public void Start()
@@ -44,20 +44,20 @@ namespace SboxServersManager.Domain.Aggregates
 
             Status = ServerStatus.Offline;
         }
-        public void AddPlayer(Player player)
+        public void AddPlayer(Character character)
         {
-            if (Players.Any(p => p.Id == player.Id))
+            if (Characters.Any(p => p.Id == character.Id))
                 throw new InvalidOperationException("Player is already connected to the server.");
 
-            Players.Add(player);
+            Characters.Add(character);
         }
-        public void RemovePlayer(Player player)
+        public void RemovePlayer(Character character)
         {
-            Players.Remove(player);
+            Characters.Remove(character);
         }
-        public Player GetPlayer(Guid playerId)
+        public Character GetPlayer(Guid characterId)
         {
-            return Players.FirstOrDefault(p => p.Id == playerId);
+            return Characters.FirstOrDefault(p => p.Id == characterId);
         }
         public void AddMod(Mod mod)
         {

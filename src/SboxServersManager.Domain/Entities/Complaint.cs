@@ -11,27 +11,27 @@ namespace SboxServersManager.Domain.Entities
     {
         public Guid Id { get; private set; }
         public string Description { get; private set; }
-        public Guid PlayerId { get; private set; }
+        public Guid AuthorId { get; private set; }
         public Priority? Priority { get; private set; }
         public Status Status { get; private set; }
-        public Guid? UserId { get; private set; } // Создать админ
+        public string? AdminName { get; private set; } // Создать админ
         public string? Response { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdatedAt { get; private set; }
 
-        public Complaint(Guid playerId, string description, Priority priority = Enums.Priority.Normal)
+        public Complaint(Guid authorId, string description, Priority priority = Enums.Priority.Normal)
         {
             Id = Guid.NewGuid();
-            PlayerId = playerId;
+            AuthorId = authorId;
             Description = description;
             Priority = priority;
             Status = Status.New;
             CreatedAt = DateTime.UtcNow;
         }
 
-        public void SetAdminResponse(Guid adminId, string response)
+        public void SetAdminResponse(string adminName, string response)
         {
-            UserId = adminId;
+            AdminName = adminName;
             Response = response;
             Status = Status.Completed;
             UpdatedAt = DateTime.UtcNow;

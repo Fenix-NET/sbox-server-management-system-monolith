@@ -13,7 +13,7 @@ namespace SboxServersManager.Application.Dtos
         public string IPAddress { get; set; }
         public int Port { get; set; }
         public string Status { get; set; }
-        public int PlayerCount { get; set; }
+        public int CharacterCount { get; set; }
         public int ModCount { get; set; }
 
     }

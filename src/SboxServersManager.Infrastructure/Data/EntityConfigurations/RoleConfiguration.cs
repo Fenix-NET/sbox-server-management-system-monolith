@@ -27,11 +27,6 @@ namespace SboxServersManager.Infrastructure.Data.EntityConfigurations
             },
             new Role
             {
-                Name = "Vip",
-                NormalizedName = "VIP"
-            },
-            new Role
-            {
                 Name = "Helper",
                 NormalizedName = "HELPER"
             },

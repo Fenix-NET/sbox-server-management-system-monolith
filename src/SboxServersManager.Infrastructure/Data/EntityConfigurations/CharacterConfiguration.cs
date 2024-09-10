@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace SboxServersManager.Infrastructure.Data.EntityConfigurations
 {
-    public class PlayerConfiguration : IEntityTypeConfiguration<Player>
+    public class CharacterConfiguration : IEntityTypeConfiguration<Character>
     {
-        public void Configure(EntityTypeBuilder<Player> builder)
+        public void Configure(EntityTypeBuilder<Character> builder)
         {
-            builder.ToTable("players");
+            builder.ToTable("characters");
 
-            builder.Property(p => p.Id).HasColumnName("player_id")
+            builder.Property(p => p.Id).HasColumnName("character_id")
                 .IsRequired();
             builder.HasKey(p => p.Id);
 
-            builder.Property(p => p.Username).HasColumnName("username")
+            builder.Property(p => p.Name).HasColumnName("name")
                 .IsRequired()
                 .HasMaxLength(50);
 
@@ -42,7 +42,7 @@ namespace SboxServersManager.Infrastructure.Data.EntityConfigurations
             builder.Property(p => p.DateReceivingBan).HasColumnName("date_receiving_ban");
 
             builder.HasOne<Server>()
-                .WithMany(s => s.Players)
+                .WithMany(s => s.Characters)
                 .HasForeignKey(p => p.ServerId)
                 .OnDelete(DeleteBehavior.Cascade);
 

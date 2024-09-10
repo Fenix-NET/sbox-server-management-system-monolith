@@ -10,7 +10,7 @@ namespace SboxServersManager.Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddScoped<IServerManagementService, ServerManagementService>();
-            services.AddScoped<IPlayerManagementService, PlayerManagementService>();
+            services.AddScoped<ICharacterManagementService, CharacterManagementService>();
             services.AddScoped<IModManagementService, ModManagementService>();
 
             services.AddMediatR(ctg =>

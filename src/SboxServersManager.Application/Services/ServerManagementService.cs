@@ -50,7 +50,7 @@ namespace SboxServersManager.Application.Services
                 IPAddress = server.Address.ToString(),
                 Port = server.Port,
                 Status = server.Status.ToString(),
-                PlayerCount = server.Players.Count,
+                CharacterCount = server.Characters.Count,
                 ModCount = server.ActiveMods.Count
             };
         }
@@ -66,7 +66,7 @@ namespace SboxServersManager.Application.Services
                 IPAddress = server.Address.ToString(),
                 Port = server.Port,
                 Status = server.Status.ToString(),
-                PlayerCount = server.Players.Count,
+                CharacterCount = server.Characters.Count,
                 ModCount = server.ActiveMods.Count
             });
         }
