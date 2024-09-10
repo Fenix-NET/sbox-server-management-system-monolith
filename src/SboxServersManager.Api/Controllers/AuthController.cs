@@ -11,10 +11,12 @@ namespace SboxServersManager.Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IAuthenticationService authenticationService)
+        public AuthController(IAuthenticationService authenticationService, ILogger<AuthController> logger)
         {
             _authenticationService = authenticationService;
+            _logger = logger;   
         }
 
         [HttpPost("registration")]

@@ -12,8 +12,8 @@ namespace SboxServersManager.Api.Controllers
     public class PlayersController : ControllerBase //Тут много чего надо делать-переделывать. Оптимизировать для реальной серверной функциональности.
     {
         private readonly IPlayerManagementService _playerManagementService;
-        private readonly ILogger _logger;
-        public PlayersController(ILogger logger, IPlayerManagementService playerManagementService)
+        private readonly ILogger<PlayersController> _logger;
+        public PlayersController(ILogger<PlayersController> logger, IPlayerManagementService playerManagementService)
         {
             _logger = logger;
             _playerManagementService = playerManagementService;

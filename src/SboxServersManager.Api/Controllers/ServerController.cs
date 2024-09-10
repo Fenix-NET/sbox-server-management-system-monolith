@@ -26,6 +26,8 @@ namespace SboxServersManager.Api.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateServer([FromBody]CreateServerRequest serverRequest)
         {
+            _logger.LogInformation($"[POST]CreateServer Starting. Name:{serverRequest.Name}, IP:{serverRequest.IPAddress}, Port:{serverRequest.Port}");
+
             if (serverRequest == null) return BadRequest();
 
             try
@@ -36,6 +38,7 @@ namespace SboxServersManager.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogWarning($"CreateServer Error. Error message: {ex.Message}");
                 return StatusCode(500);
             }
         }
@@ -55,6 +58,7 @@ namespace SboxServersManager.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogWarning($"GetServerById Error. Id:{id}. Error message: {ex.Message}");
                 return StatusCode(500);
             }
         }
@@ -73,6 +77,7 @@ namespace SboxServersManager.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogWarning($"GetAllServers Error. Error message: {ex.Message}");
                 return StatusCode(500);
             }
         }
@@ -92,6 +97,7 @@ namespace SboxServersManager.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogWarning($"StartServer Error. Id:{id}. Error message: {ex.Message}");
                 return StatusCode(500);
             }
         }
@@ -111,6 +117,7 @@ namespace SboxServersManager.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogWarning($"StopServer Error. Id:{id}. Error message: {ex.Message}");
                 return StatusCode(500);
             }
         }
@@ -130,6 +137,7 @@ namespace SboxServersManager.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogWarning($"DeleteServer Error. Id:{id}. Error message: {ex.Message}");
                 return StatusCode(500);
             }
         }

@@ -11,10 +11,12 @@ namespace SboxServersManager.Api.Controllers
     public class TokenController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;
+        private readonly ILogger<TokenController> _logger;
 
-        public TokenController(IAuthenticationService authenticationService)
+        public TokenController(IAuthenticationService authenticationService, ILogger<TokenController> logger)
         {
             _authenticationService = authenticationService;
+            _logger = logger;
         }
 
         [HttpPost("refresh")]
