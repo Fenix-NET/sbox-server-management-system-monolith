@@ -6,9 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using SboxServersManager.Application.Interfaces.Identity;
 using SboxServersManager.Application.Interfaces.Repositories;
+using SboxServersManager.Domain.Entities;
 using SboxServersManager.Infrastructure.Data;
 using SboxServersManager.Infrastructure.Data.Repositories;
-using SboxServersManager.Infrastructure.Identity.Entities;
 using SboxServersManager.Infrastructure.Identity.Services;
 using System.Text;
 

@@ -3,11 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using SboxServersManager.Application.Dtos.Request;
 using SboxServersManager.Application.Interfaces;
 using SboxServersManager.Domain.Aggregates;
+using SboxServersManager.Domain.Entities;
 
 namespace SboxServersManager.Api.Controllers
 {
     [ApiVersion("1.0")]
-    [Route("api/{v:apiversion}/servers/{serverId}/players")]
+    [Route("api/{v:apiversion}/servers/{serverId}/characters")]
     [ApiController]
     public class CharactersController : ControllerBase //Тут много чего надо делать-переделывать. Оптимизировать для реальной серверной функциональности.
     {
@@ -19,18 +20,18 @@ namespace SboxServersManager.Api.Controllers
             _characterManagementService = characterManagementService;
         }
         /// <summary>
-        /// Получить список всех игроков сервера
+        /// Получить список всех персонажей сервера
         /// </summary>
         /// <param name="serverId"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetPlayers(Guid serverId)
+        public async Task<IActionResult> GetAllCharacters(Guid serverId)
         {
             try
             {
-                var players = await _characterManagementService.GetPlayersByServerIdAsync(serverId);
+                var characters = await _characterManagementService.GetCharactersByServerIdAsync(serverId);
 
-                return Ok(players);
+                return Ok(characters);
             }
             catch (Exception ex)
             {
@@ -39,19 +40,19 @@ namespace SboxServersManager.Api.Controllers
         }
 
         /// <summary>
-        /// Добавление игрока на сервер.
+        /// Добавление персонажа на сервер.
         /// </summary>
         /// <param name="serverId"></param>
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> AddPlayer(Guid serverId, [FromBody] AddPlayerRequest request)
+        public async Task<IActionResult> AddCharacter(Guid serverId, [FromBody] AddCharacterRequest request)
         {
             try
             {
-                var playerId = await _characterManagementService.AddPlayerToServerAsync(serverId, request.Username, request.Role);
+                var playerId = await _characterManagementService.AddCharacterToServerAsync(serverId, request.Name, request.Role);
 
-                return CreatedAtAction(nameof(AddPlayer), playerId);
+                return CreatedAtAction(nameof(AddCharacter), playerId);
             }
             catch (Exception ex)
             {
@@ -60,19 +61,19 @@ namespace SboxServersManager.Api.Controllers
         }
 
         /// <summary>
-        /// Удаление игрока с сервера
+        /// Удаление персонажа с сервера
         /// </summary>
         /// <param name="serverId"></param>
         /// <param name="playerId"></param>
         /// <returns></returns>
         [HttpDelete("{playerId}")]
-        public async Task<IActionResult> RemovePlayer(Guid serverId, Guid playerId)
+        public async Task<IActionResult> RemoveCharacter(Guid serverId, Guid characterId)
         {
             try
             {
-                await _characterManagementService.RemovePlayerFromServerAsync(serverId, playerId);
+                await _characterManagementService.RemoveCharacterFromServerAsync(serverId, characterId);
 
-                return Ok($"Player with id: {playerId} delete");
+                return Ok($"Character with id: {characterId} delete");
             }
             catch (Exception ex)
             {
@@ -80,18 +81,18 @@ namespace SboxServersManager.Api.Controllers
             }
         }
         /// <summary>
-        /// Забанить игрока по ID
+        /// Забанить Персонажа по ID
         /// </summary>
         /// <param name="playerId"></param>
         /// <returns></returns>
         [HttpPost("{playerId}/ban")]
-        public async Task<IActionResult> BanPlayer(Guid playerId)
+        public async Task<IActionResult> BanCharacter(Guid characterId)
         {
             try
             {
-                await _characterManagementService.BanPlayerAsync(playerId);
+                await _characterManagementService.BanCharacterAsync(characterId);
 
-                return Ok($"Player with id: {playerId} Banned");
+                return Ok($"Character with id: {characterId} Banned");
             }
             catch (Exception ex)
             {
@@ -100,18 +101,18 @@ namespace SboxServersManager.Api.Controllers
         }
 
         /// <summary>
-        /// Разбанить игрока по ID
+        /// Разбанить Персонажа по ID
         /// </summary>
         /// <param name="playerId"></param>
         /// <returns></returns>
         [HttpPost("{playerId}/unban")]
-        public async Task<IActionResult> UnbanPlayer(Guid playerId)
+        public async Task<IActionResult> UnbanCharacter(Guid characterId)
         {
             try
             {
-                await _characterManagementService.UnbanPlayerAsync(playerId);
+                await _characterManagementService.UnbanCharacterAsync(characterId);
 
-                return Ok($"Player with id: {playerId} UnBanned");
+                return Ok($"Character with id: {characterId} UnBanned");
             }
             catch (Exception ex)
             {

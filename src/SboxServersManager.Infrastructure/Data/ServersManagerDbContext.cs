@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using SboxServersManager.Domain.Aggregates;
 using SboxServersManager.Domain.Entities;
 using SboxServersManager.Infrastructure.Data.EntityConfigurations;
-using SboxServersManager.Infrastructure.Identity.Entities;
 
 namespace SboxServersManager.Infrastructure.Data
 {

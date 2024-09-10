@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SboxServersManager.Application.Dtos.Request
 {
-    public class AddPlayerRequest
+    public class AddCharacterRequest
     {
-        public string Username { get; set; }
+        public string Name { get; set; }
         public PlayerRole Role { get; set; }
 
     }

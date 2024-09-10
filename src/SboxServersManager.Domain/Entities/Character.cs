@@ -10,7 +10,7 @@ namespace SboxServersManager.Domain.Entities
 {
     public class Character
     {
-        public Guid Id { get; set; } = Guid.NewGuid(); //В дальнейшем можно использовать SteamID
+        public Guid Id { get; set; } = Guid.NewGuid(); 
         public string Name { get; set; }
         public PlayerRole Role { get; set; } = PlayerRole.None;
         public bool IsVip { get; set; }

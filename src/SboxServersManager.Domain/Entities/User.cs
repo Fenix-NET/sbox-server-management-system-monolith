@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using SboxServersManager.Domain.Entities;
 
-namespace SboxServersManager.Infrastructure.Identity.Entities
+namespace SboxServersManager.Domain.Entities
 {
     public class User : IdentityUser<Guid>
     {
@@ -11,6 +10,7 @@ namespace SboxServersManager.Infrastructure.Identity.Entities
         public bool IsVip { get; set; }
         public DateTime VipStartDate { get; set; }
         public DateTime VipEndDate { get; set; }
+        public List<Achievement>? Achievements { get; set; }
         public decimal AccauntBalance { get; set; } = 0;
         public int? NumberPurchases { get; set; }
         public decimal? TotalMoneySpent { get; set; }

@@ -9,8 +9,8 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
-using SboxServersManager.Infrastructure.Identity.Entities;
 using System.Security.Cryptography;
+using SboxServersManager.Domain.Entities;
 
 namespace SboxServersManager.Infrastructure.Identity.Services
 {
