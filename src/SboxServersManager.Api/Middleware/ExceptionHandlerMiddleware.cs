@@ -31,41 +31,47 @@ namespace SboxServersManager.Api.Middleware
         {
             _logger.LogError(ex, $"Произошла ошибка! Подробности: {ex.Message}");
 
-            var errorDetails = new ErrorDetails();
             (string details, int code) result;
 
             switch (ex)
             {
                 case BadRequestException badReqEx:
-                    result = HandleBadRequestException(badReqEx, errorDetails);
+                    result = HandleBadRequestException((BadRequestException)ex);
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;
                 case NotFoundException notFoundException:
-                    result = HandleNotFoundException(notFoundException, errorDetails);
+                    result = HandleNotFoundException((NotFoundException)ex);
+                    context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                     break;
                 case ValidationException validationException: 
-                    result = HandleValidationException(validationException, errorDetails);
+                    result = HandleValidationException((ValidationException)ex);
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;
                 default:
-                    result = (JsonSerializer.Serialize(errorDetails), 500); 
+                    result = ("Произошла неизвестная ошибка", 500);
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
             }
 
             context.Response.ContentType = "application/json";
-            context.Response.StatusCode = result.code;
 
-            await context.Response.WriteAsync(result.details);
+            await context.Response.WriteAsync(new ErrorDetails()
+            {
+                StatusCode = result.code,
+                Message = result.details,
+            }.ToString());
         }
-        private (string, int) HandleBadRequestException(BadRequestException ex, ErrorDetails errorDetails)
+        private (string, int) HandleBadRequestException(BadRequestException ex)
         {
-            return (JsonSerializer.Serialize(errorDetails), errorDetails.StatusCode);
+            return (ex.Message, 400);
         }
-        private (string, int) HandleNotFoundException(NotFoundException ex, ErrorDetails errorDetails)
+        private (string, int) HandleNotFoundException(NotFoundException ex)
         {
-            return (JsonSerializer.Serialize(errorDetails), errorDetails.StatusCode);
+            return (ex.Message, 404);
         }
-        private (string, int) HandleValidationException(ValidationException ex, ErrorDetails errorDetails)
+        private (string, int) HandleValidationException(ValidationException ex)
         {
-            return (JsonSerializer.Serialize(errorDetails), errorDetails.StatusCode);
+            return (ex.Message, 400);
         }
     }
 }
