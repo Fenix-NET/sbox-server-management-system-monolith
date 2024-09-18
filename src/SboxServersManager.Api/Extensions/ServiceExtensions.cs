@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
+using SboxServersManager.Api.Options;
 using SboxServersManager.Infrastructure.Data;
 
 namespace SboxServersManager.Api.Extensions
@@ -48,6 +49,10 @@ namespace SboxServersManager.Api.Extensions
                 opt.ApiVersionReader = new HeaderApiVersionReader("api-version");
             });
         }
-
+        public static void ConfigureOptions(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddOptions<ConnectionStrings>().Bind(configuration.GetSection("ConnectionStrings"));
+            services.AddOptions<JwtSettings>().Bind(configuration.GetSection("JwtSettings"));
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace SboxServersManager.Api
                 var builder = WebApplication.CreateBuilder(args);
 
                 builder.Host.ConfigurationSerilog();
-
+                builder.Services.ConfigureOptions(builder.Configuration);
                 builder.Services.ConfigurationCors();
                 builder.Services.ConfigureVersioning();
 

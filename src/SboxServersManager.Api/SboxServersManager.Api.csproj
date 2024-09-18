@@ -17,13 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Middleware\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SboxServersManager.Application\SboxServersManager.Application.csproj" />
     <ProjectReference Include="..\SboxServersManager.Infrastructure\SboxServersManager.Infrastructure.csproj" />
+    <ProjectReference Include="..\SboxServersManager.Shared\SboxServersManager.Shared.csproj" />
   </ItemGroup>
 
 </Project>

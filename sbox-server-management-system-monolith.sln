@@ -7,15 +7,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{23345334-8F2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3CBF956B-F1DA-4BF7-9A30-211CB0377E29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SboxServersManager.Api", "src\SboxServersManager.Api\SboxServersManager.Api.csproj", "{245B58AB-DD15-49D4-A98E-95FB80C60D9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SboxServersManager.Api", "src\SboxServersManager.Api\SboxServersManager.Api.csproj", "{245B58AB-DD15-49D4-A98E-95FB80C60D9B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{122FF63A-3C64-4970-ADD4-5E5A91BC7596} = {122FF63A-3C64-4970-ADD4-5E5A91BC7596}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SboxServersManager.Application", "src\SboxServersManager.Application\SboxServersManager.Application.csproj", "{E4543C78-A26A-4A54-9A03-3C1C7ABA6AE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SboxServersManager.Application", "src\SboxServersManager.Application\SboxServersManager.Application.csproj", "{E4543C78-A26A-4A54-9A03-3C1C7ABA6AE9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{122FF63A-3C64-4970-ADD4-5E5A91BC7596} = {122FF63A-3C64-4970-ADD4-5E5A91BC7596}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SboxServersManager.Domain", "src\SboxServersManager.Domain\SboxServersManager.Domain.csproj", "{5388AA34-E63C-4618-B70D-4B2365A7B133}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SboxServersManager.Domain", "src\SboxServersManager.Domain\SboxServersManager.Domain.csproj", "{5388AA34-E63C-4618-B70D-4B2365A7B133}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SboxServersManager.Infrastructure", "src\SboxServersManager.Infrastructure\SboxServersManager.Infrastructure.csproj", "{35711836-C808-4576-8C68-3F4764CA9A0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SboxServersManager.Infrastructure", "src\SboxServersManager.Infrastructure\SboxServersManager.Infrastructure.csproj", "{35711836-C808-4576-8C68-3F4764CA9A0F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{122FF63A-3C64-4970-ADD4-5E5A91BC7596} = {122FF63A-3C64-4970-ADD4-5E5A91BC7596}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SboxServersManager.Shared", "src\SboxServersManager.Shared\SboxServersManager.Shared.csproj", "{122FF63A-3C64-4970-ADD4-5E5A91BC7596}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SboxServersManager.Shared", "src\SboxServersManager.Shared\SboxServersManager.Shared.csproj", "{122FF63A-3C64-4970-ADD4-5E5A91BC7596}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
