@@ -69,6 +69,5 @@ namespace SboxServersManager.Domain.Aggregates
         {
             ActiveMods.Remove(mod);
         }
-
     }
 }

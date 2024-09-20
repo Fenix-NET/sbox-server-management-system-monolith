@@ -11,17 +11,15 @@ namespace SboxServersManager.Application.Services
 {
     public class ModManagementService : IModManagementService //Аналогично всю логику подстраивать под сервер.
     {
-        private readonly IModRepository _modRepository;
-        private readonly IServerRepository _serverRepository;
+        private readonly IRepositoryManager _repositoryManager;
 
-        public ModManagementService(IModRepository modRepository, IServerRepository serverRepository)
+        public ModManagementService(IRepositoryManager repositoryManager)
         {
-            _modRepository = modRepository;
-            _serverRepository = serverRepository;
+            _repositoryManager = repositoryManager;
         }
         public async Task<IEnumerable<ModDto>> GetAllModsAsync()
         {
-            var mods = await _modRepository.GetAllAsync();
+            var mods = await _repositoryManager.mod.GetAllAsync();
             return mods.Select(mod => new ModDto
             {
                 Id = mod.Id,
@@ -32,7 +30,7 @@ namespace SboxServersManager.Application.Services
         }
         public async Task<IEnumerable<ModDto>> GetModsByServerIdAsync(Guid serverId)
         {
-            var server = await _serverRepository.GetByIdAsync(serverId);
+            var server = await _repositoryManager.server.GetByIdAsync(serverId);
             if (server == null) throw new Exception("Server not found");
 
             return server.ActiveMods.Select(mod => new ModDto
@@ -45,25 +43,25 @@ namespace SboxServersManager.Application.Services
         }
         public async Task InstallModOnServerAsync(Guid serverId, Guid modId)
         {
-            var server = await _serverRepository.GetByIdAsync(serverId);
+            var server = await _repositoryManager.server.GetByIdAsync(serverId);
             if (server == null) throw new Exception("Server not found");
 
-            var mod = await _modRepository.GetByIdAsync(modId);
+            var mod = await _repositoryManager.mod.GetByIdAsync(modId);
             if (mod == null) throw new Exception("Mod not found");
 
             server.AddMod(mod);
-            await _serverRepository.UpdateAsync(server);
+            await _repositoryManager.server.UpdateAsync(server);
         }
         public async Task RemoveModFromServerAsync(Guid serverId, Guid modId)
         {
-            var server = await _serverRepository.GetByIdAsync(serverId);
+            var server = await _repositoryManager.server.GetByIdAsync(serverId);
             if (server == null) throw new Exception("Server not found");
 
             var mod = server.ActiveMods.FirstOrDefault(m => m.Id == modId);
             if (mod == null) throw new Exception("Mod not found on this server");
 
             server.RemoveMod(mod);
-            await _serverRepository.UpdateAsync(server);
+            await _repositoryManager.server.UpdateAsync(server);
         }
     }
 }

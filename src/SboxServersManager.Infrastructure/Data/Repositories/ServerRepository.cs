@@ -4,29 +4,27 @@ using SboxServersManager.Domain.Aggregates;
 
 namespace SboxServersManager.Infrastructure.Data.Repositories
 {
-    public class ServerRepository : IServerRepository
+    public class ServerRepository : BaseRepository<Server>, IServerRepository
     {
-        private readonly ServersManagerDbContext _context;
-
         public ServerRepository(ServersManagerDbContext context)
+            : base(context) 
         {
-            _context = context;
         }
 
-        public async Task<Server> GetByIdAsync(Guid id) //.AsSplitQuery()?
+        public async Task<Server> GetByIdAsync(Guid id, bool trackChange) //.AsSplitQuery()?
         {
-            var server = await _context.Servers.AsNoTracking()
-                .Include(s => s.Players)
+            var server = await FindByCondition(s => s.Id.Equals(id), trackChange)
+                .Include(s => s.Characters)
                 .Include(s => s.ActiveMods)
-                .FirstOrDefaultAsync(s => s.Id == id);
+                .SingleOrDefaultAsync();
 
             return server;
         }
 
-        public async Task<IEnumerable<Server>> GetAllAsync() //.AsSplitQuery()?
+        public async Task<IEnumerable<Server>> GetAllAsync(bool trackChange) //.AsSplitQuery()?
         {
-            var servers = await _context.Servers.AsNoTracking()
-                .Include(s => s.Players)
+            var servers = await FindAll(trackChange)
+                .Include(s => s.Characters)
                 .Include(s => s.ActiveMods)
                 .ToListAsync();
 
@@ -35,21 +33,15 @@ namespace SboxServersManager.Infrastructure.Data.Repositories
 
         public async Task AddAsync(Server server)
         {
-            await _context.Servers.AddAsync(server);
-            await _context.SaveChangesAsync();
+            await Create(server);
         }
-
-        public async Task UpdateAsync(Server server)
+        public void UpdateServer(Server server)
         {
-            _context.Servers.Update(server);
-            await _context.SaveChangesAsync();
+            Update(server);
         }
-
-        public async Task DeleteAsync(Server server)
+        public void HardDeleteServer(Server server)
         {
-            _context.Servers.Remove(server);
-            await _context.SaveChangesAsync();
+            Delete(server);
         }
-
     }
 }

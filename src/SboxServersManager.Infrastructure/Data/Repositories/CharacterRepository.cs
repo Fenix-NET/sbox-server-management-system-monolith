@@ -1,46 +1,33 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SboxServersManager.Application.Interfaces.Repositories;
+using SboxServersManager.Domain.Aggregates;
 using SboxServersManager.Domain.Entities;
 
 namespace SboxServersManager.Infrastructure.Data.Repositories
 {
-    public class CharacterRepository : ICharacterRepository
+    public class CharacterRepository : BaseRepository<Character>, ICharacterRepository
     {
-        private readonly ServersManagerDbContext _context;
-
         public CharacterRepository(ServersManagerDbContext context)
+            :base(context) 
         {
-            _context = context;
         }
-        public async Task<Character> GetByIdAsync(Guid id)
+        public async Task<Character> GetByIdAsync(Guid id, bool trackChange)
         {
-            var player = await _context.Characters.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
-
-            return player;
+            return await FindByCondition(c => c.Id.Equals(id), trackChange).SingleOrDefaultAsync();
+        }
+        public async Task<Character> GetByServerIdAsync(Guid serverId, Guid characterId, bool trackChange)
+        {
+            return await FindByCondition(c => c.Id.Equals(characterId) && c.ServerId.Equals(serverId), trackChange).SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Character>> GetByServerIdAsync(Guid serverId)
+        public async Task<IEnumerable<Character>> GetAllByServerIdAsync(Guid serverId, bool trackChange)
         {
-            return await _context.Characters.AsNoTracking().Where(p => p.ServerId == serverId).ToListAsync();
+            return await FindByCondition(c => c.ServerId.Equals(serverId), trackChange).ToListAsync();
         }
 
         public async Task AddAsync(Character character)
         {
-            await _context.Characters.AddAsync(character);
-            await _context.SaveChangesAsync();
+            await AddAsync(character);
         }
-
-        public async Task UpdateAsync(Character character)
-        {
-            _context.Characters.Update(character);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteAsync(Character character)
-        {
-            _context.Characters.Remove(character);
-            await _context.SaveChangesAsync();
-        }
-
     }
 }

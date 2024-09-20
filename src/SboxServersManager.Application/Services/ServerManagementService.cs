@@ -14,10 +14,10 @@ namespace SboxServersManager.Application.Services
 {
     public class ServerManagementService : IServerManagementService
     {
-        private readonly IServerRepository _repository;
-        public ServerManagementService(IServerRepository repository)
+        private readonly IRepositoryManager _repositoryManager;
+        public ServerManagementService(IRepositoryManager repositoryManager)
         {
-            _repository = repository;
+            _repositoryManager = repositoryManager;
         }
 
         public async Task<Guid> CreateServerAsync(CreateServerRequest serverRequest)
@@ -33,13 +33,14 @@ namespace SboxServersManager.Application.Services
 
             var server = new Server(serverRequest.Name, serverRequest.IPAddress, serverRequest.Port);
 
-            await _repository.AddAsync(server);
-
+            await _repositoryManager.server.AddAsync(server);
+            await _repositoryManager.SaveAsync();
+            
             return server.Id;
         }
         public async Task<ServerDto> GetServerAsync(Guid id)
         {
-            var server = await _repository.GetByIdAsync(id);
+            var server = await _repositoryManager.server.GetByIdAsync(id, false);
 
             if(server == null) return null;
 
@@ -57,7 +58,7 @@ namespace SboxServersManager.Application.Services
 
         public async Task<IEnumerable<ServerDto>> GetAllServersAsync()
         {
-            var servers = await _repository.GetAllAsync();
+            var servers = await _repositoryManager.server.GetAllAsync(false);
 
             return servers.Select(server => new ServerDto
             {
@@ -73,30 +74,33 @@ namespace SboxServersManager.Application.Services
 
         public async Task DeleteServerAsync(Guid id)//Реализовать проверки
         {
-            var server = await _repository.GetByIdAsync(id);
+            var server = await _repositoryManager.server.GetByIdAsync(id, true);
             if(server == null) throw new Exception($"Server with ID:{id} Not Found");
 
-            await _repository.DeleteAsync(server);
+            server.SoftDelete();
+            await _repositoryManager.SaveAsync();
         }
 
         public async Task StartServerAsync(Guid id) //Реализовать проверки
         {
-            var server = await _repository.GetByIdAsync(id);
+            var server = await _repositoryManager.server.GetByIdAsync(id, true);
             if (server == null) throw new Exception($"Server with ID:{id} Not Found");
 
             server.Start();
             
-            await _repository.UpdateAsync(server);
+            _repositoryManager.server.UpdateServer(server);
+            await _repositoryManager.SaveAsync();
         }
 
         public async Task StopServerAsync(Guid id)//Реализовать проверки
         {
-            var server = await _repository.GetByIdAsync(id);
+            var server = await _repositoryManager.server.GetByIdAsync(id, true);
             if (server == null) throw new Exception($"Server with ID:{id} Not Found");
 
             server.Stop();
 
-            await _repository.UpdateAsync(server);
+            _repositoryManager.server.UpdateServer(server);
+            await _repositoryManager.SaveAsync();
         }
     }
 }

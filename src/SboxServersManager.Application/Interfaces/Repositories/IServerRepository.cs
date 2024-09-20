@@ -9,11 +9,9 @@ namespace SboxServersManager.Application.Interfaces.Repositories
 {
     public interface IServerRepository
     {
-        Task<Server> GetByIdAsync(Guid id);
-        Task<IEnumerable<Server>> GetAllAsync();
+        Task<Server> GetByIdAsync(Guid id, bool trackChange);
+        Task<IEnumerable<Server>> GetAllAsync(bool trackChange);
         Task AddAsync(Server server);
-        Task UpdateAsync(Server server);
-        Task DeleteAsync(Server server);
-
+        void UpdateServer(Server server);
     }
 }

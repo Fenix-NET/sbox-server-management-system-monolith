@@ -29,9 +29,9 @@ namespace SboxServersManager.Infrastructure.Data.Repositories
                 ServersManagerDbContext.Set<T>().AsNoTracking().Where(expression) :
                 ServersManagerDbContext.Set<T>().Where(expression);
         }
-        public void Create(T entity) 
+        public async Task Create(T entity) 
         {
-            ServersManagerDbContext.Set<T>().Add(entity);
+            await ServersManagerDbContext.Set<T>().AddAsync(entity);
         }
         public void Update(T entity) 
         {

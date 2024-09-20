@@ -9,11 +9,9 @@ namespace SboxServersManager.Application.Interfaces.Repositories
 {
     public interface ICharacterRepository
     {
-        Task<Character> GetByIdAsync(Guid id);
-        Task<IEnumerable<Character>> GetByServerIdAsync(Guid serverId);
+        Task<Character> GetByIdAsync(Guid id, bool trackChange);
+        Task<IEnumerable<Character>> GetAllByServerIdAsync(Guid serverId, bool trackChange);
+        Task<Character> GetByServerIdAsync(Guid serverId, Guid characterId, bool trackChange);
         Task AddAsync(Character character);
-        Task UpdateAsync(Character character);
-        Task DeleteAsync(Character character);
-
     }
 }

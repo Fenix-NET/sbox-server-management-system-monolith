@@ -13,5 +13,12 @@ namespace SboxServersManager.Domain.Entities
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public bool IsDeleted { get; set; } = false;
+
+        public void SoftDelete()
+        {
+            if (IsDeleted == true) throw new InvalidOperationException("Server has already been deleted");
+
+            IsDeleted = true;
+        }
     }
 }
