@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SboxServersManager.Domain.Entities
 {
-    public class Notification : BaseEntity
+    public class Item : BaseEntity
     {
-        public string Message { get; private set; }
-        public Status Status { get; private set; }
-        public DateTime? SentAt { get; private set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public ItemType Type { get; set; }
     }
 }

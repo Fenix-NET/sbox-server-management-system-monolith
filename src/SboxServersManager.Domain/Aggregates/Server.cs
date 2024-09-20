@@ -10,9 +10,8 @@ using SboxServersManager.Domain.Enums;
 
 namespace SboxServersManager.Domain.Aggregates
 {
-    public class Server
+    public class Server : BaseEntity
     {
-        public Guid Id { get; private set; }
         public string Name { get; private set; }
         public string Address { get; private set; }
         public int Port { get; private set; }
@@ -44,18 +43,18 @@ namespace SboxServersManager.Domain.Aggregates
 
             Status = ServerStatus.Offline;
         }
-        public void AddPlayer(Character character)
+        public void AddCharacter(Character character)
         {
             if (Characters.Any(p => p.Id == character.Id))
                 throw new InvalidOperationException("Player is already connected to the server.");
 
             Characters.Add(character);
         }
-        public void RemovePlayer(Character character)
+        public void RemoveCharacter(Character character)
         {
             Characters.Remove(character);
         }
-        public Character GetPlayer(Guid characterId)
+        public Character GetCharacter(Guid characterId)
         {
             return Characters.FirstOrDefault(p => p.Id == characterId);
         }

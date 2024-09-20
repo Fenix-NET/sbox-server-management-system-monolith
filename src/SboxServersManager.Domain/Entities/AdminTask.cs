@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace SboxServersManager.Domain.Entities
 {
-    public class AdminTask
+    public class AdminTask : BaseEntity
     {
-        public Guid Id { get; private set; }
         public Guid? ServerId { get; private set; }
         public AdminTaskType Type { get; private set; }
         public Priority Priority { get; private set; }
@@ -19,7 +18,6 @@ namespace SboxServersManager.Domain.Entities
         public DateTime? CompletedTime { get; private set; }
         public Guid? Owner { get; private set; }
         public string? Annotation { get; private set; }
-        public DateTime CreatedDate { get; private set; }
 
         public AdminTask(AdminTaskType type, Priority priority, string? details ="", Guid? serverId = null, DateTime? scheduledTime = null, Guid? owner = null)
         {

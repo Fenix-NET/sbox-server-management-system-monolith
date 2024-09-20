@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using SboxServersManager.Application.Interfaces;
 using SboxServersManager.Application.Interfaces.Identity;
 using SboxServersManager.Application.Interfaces.Repositories;
 using SboxServersManager.Domain.Entities;
@@ -27,6 +28,9 @@ namespace SboxServersManager.Infrastructure
             services.AddScoped<ICharacterRepository, CharacterRepository>();
             services.AddScoped<IModRepository, ModRepository>();
             services.AddScoped<IAdminTaskRepository, AdminTaskRepository>();
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             //Регистрация и настройка сервисов Аутентификации и Авторизации ************************************

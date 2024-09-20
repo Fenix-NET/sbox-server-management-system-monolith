@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace SboxServersManager.Domain.Entities
 {
-    public class Mod
+    public class Mod : BaseEntity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public string? Version { get; set; }
         public string? Description { get; set; }

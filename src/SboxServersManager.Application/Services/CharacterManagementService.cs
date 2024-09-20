@@ -13,18 +13,16 @@ namespace SboxServersManager.Application.Services
 {
     public class CharacterManagementService : ICharacterManagementService //Тут много чего надо оптимизировать.
     {
-        private readonly ICharacterRepository _characterRepository;
-        private readonly IServerRepository _serverRepository;
+        private readonly IRepositoryManager _repositoryManager;
 
-        public CharacterManagementService(ICharacterRepository characterRepository, IServerRepository serverRepository)
+        public CharacterManagementService(IRepositoryManager repositoryManager)
         {
-            _characterRepository = characterRepository;
-            _serverRepository = serverRepository;
+            _repositoryManager = repositoryManager;
         }
 
         public async Task<IEnumerable<CharacterDto>> GetCharactersByServerIdAsync(Guid serverId)
         {
-            var characters = await _characterRepository.GetByServerIdAsync(serverId);
+            var characters = await _repositoryManager.character.GetByServerIdAsync(serverId);
 
             return characters.Select(player => new CharacterDto
             {
@@ -37,50 +35,51 @@ namespace SboxServersManager.Application.Services
         }
         public async Task<Guid> AddCharacterToServerAsync(Guid serverId, string name, PlayerRole role)//Тут кривая реализация, в реальном приложении логика будет другая
         {
-            var server = await _serverRepository.GetByIdAsync(serverId);
+            var server = await _repositoryManager.server.GetByIdAsync(serverId);
             if (server == null) throw new ArgumentException("Server not found");
 
             Character character = new Character(name, role, serverId);
 
             server.AddCharacter(character);
 
-            await _characterRepository.AddAsync(character);
-            await _serverRepository.UpdateAsync(server);
+            await _repositoryManager.character.AddAsync(character);
+            await _repositoryManager.server.UpdateAsync(server);
 
             return character.Id;
         }
         public async Task RemoveCharacterFromServerAsync(Guid serverId, Guid characterId) //Тут кривая реализация, в реальном приложении логика будет другая
         {
-            var server = await _serverRepository.GetByIdAsync(serverId);
+            var server = await _repositoryManager.server.GetByIdAsync(serverId);
             if (server == null) throw new ArgumentException("Server not found");
 
             var character = server.GetCharacter(characterId);
             if (character == null) throw new ArgumentException("Character not found");
 
             server.RemoveCharacter(character);
-            await _characterRepository.DeleteAsync(character);
-            await _serverRepository.UpdateAsync(server);
+            await _repositoryManager.character.DeleteAsync(character);
+            await _repositoryManager.server.UpdateAsync(server);
         }
 
         public async Task BanCharacterAsync(Guid characterId)//Добавить проверки
         {
-            var character = await _characterRepository.GetByIdAsync(characterId);
+            var character = await _repositoryManager.character.GetByIdAsync(characterId);
             if (character == null) throw new ArgumentException("Character not found");
 
             character.IsBanned = true;
-            character.DateReceivingBan = DateTime.UtcNow;
+            character.BanStartDate = DateTime.UtcNow;
 
-            await _characterRepository.UpdateAsync(character);
+            await _repositoryManager.character.UpdateAsync(character);
         }
 
         public async Task UnbanCharacterAsync(Guid characterId)//Добавить проверки
         {
-            var character = await _characterRepository.GetByIdAsync(characterId);
+            var character = await _repositoryManager.character.GetByIdAsync(characterId);
             if (character == null) throw new ArgumentException("Character not found");
 
             character.IsBanned = false;
-            character.DateReceivingBan = null;
-            await _characterRepository.UpdateAsync(character);
+            character.BanStartDate = null;
+            character.BanEndDate = null;
+            await _repositoryManager.character.UpdateAsync(character);
         }
     }
 }

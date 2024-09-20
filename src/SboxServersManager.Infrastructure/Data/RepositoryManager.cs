@@ -1,23 +1,16 @@
-﻿using Newtonsoft.Json.Bson;
+﻿using SboxServersManager.Application.Interfaces;
 using SboxServersManager.Application.Interfaces.Repositories;
 using SboxServersManager.Infrastructure.Data.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SboxServersManager.Infrastructure.Data
 {
-    public class RepositoryManager : IRepositoryManager, IDisposable
+    public class RepositoryManager : IRepositoryManager
     {
         private readonly ServersManagerDbContext _context;
         private readonly Lazy<IAdminTaskRepository> _adminTaskRepository;
         private readonly Lazy<ICharacterRepository> _characterRepository;
         private readonly Lazy<IModRepository> _modRepository;
         private readonly Lazy<IServerRepository> _serverRepository;
-
-        private bool disposed;
 
         public RepositoryManager(ServersManagerDbContext context)
         {
@@ -36,17 +29,17 @@ namespace SboxServersManager.Infrastructure.Data
 
         public async Task SaveAsync() => await _context.SaveChangesAsync();
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_context != null) _context.Dispose();
-            }
-        }
+        //public void Dispose()
+        //{
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
+        //protected virtual void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        if (_context != null) _context.Dispose();
+        //    }
+        //}
     }
 }

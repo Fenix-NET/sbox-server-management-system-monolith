@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace SboxServersManager.Domain.Entities
 {
-    public class Order
+    public class Order : BaseEntity
     {
-        public Guid Id { get; private set; }
         public Guid UserId { get; private set; } // Id покупателя
         public Guid ProductId { get; private set; } // Id донатного продукта.
         public DateTime PurchaseDate { get; private set; } // Дата оформления заказа.
