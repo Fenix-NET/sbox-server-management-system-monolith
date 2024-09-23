@@ -55,7 +55,7 @@ namespace SboxServersManager.Api.Middleware
 
             context.Response.ContentType = "application/json";
 
-            await context.Response.WriteAsync(new ErrorDetails()
+            await context.Response.WriteAsync(new CustomError()
             {
                 StatusCode = result.code,
                 Message = result.details,

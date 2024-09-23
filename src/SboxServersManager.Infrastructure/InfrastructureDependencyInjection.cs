@@ -8,6 +8,7 @@ using SboxServersManager.Application.Interfaces;
 using SboxServersManager.Application.Interfaces.Identity;
 using SboxServersManager.Application.Interfaces.Repositories;
 using SboxServersManager.Domain.Entities;
+using SboxServersManager.Infrastructure.Configurations;
 using SboxServersManager.Infrastructure.Data;
 using SboxServersManager.Infrastructure.Data.Repositories;
 using SboxServersManager.Infrastructure.Identity.Services;
@@ -32,6 +33,9 @@ namespace SboxServersManager.Infrastructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+
+            var emailConfig = configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
 
             //Регистрация и настройка сервисов Аутентификации и Авторизации ************************************
             services.AddIdentity<User, Role>(options =>

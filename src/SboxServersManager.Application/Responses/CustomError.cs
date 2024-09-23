@@ -8,13 +8,8 @@ using System.Threading.Tasks;
 
 namespace SboxServersManager.Domain.ErrorModel
 {
-    public class ErrorDetails
+    public sealed record CustomError(string Code, string Message)
     {
-        public int StatusCode { get; set; }
-        public string Message { get; set; }
-        
-        public ErrorDetails() { }
 
-        public override string ToString() => JsonSerializer.Serialize(this);
     }
 }

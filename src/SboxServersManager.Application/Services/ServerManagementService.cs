@@ -1,14 +1,8 @@
 ﻿using SboxServersManager.Application.Dtos;
 using SboxServersManager.Application.Dtos.Request;
 using SboxServersManager.Application.Interfaces;
-using SboxServersManager.Application.Interfaces.Repositories;
 using SboxServersManager.Domain.Aggregates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SboxServersManager.Application.Services
 {
@@ -35,7 +29,7 @@ namespace SboxServersManager.Application.Services
 
             await _repositoryManager.server.AddAsync(server);
             await _repositoryManager.SaveAsync();
-            
+
             return server.Id;
         }
         public async Task<ServerDto> GetServerAsync(Guid id)
